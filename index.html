@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Object Detection + Voice Announcer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>AI Object Detection &amp; Voice Announcer</h1>
+  <div class="status"><span class="dot" id="dot"></span><span id="camStatus">Camera: not connected</span></div>
+</header>
+<main>
+  <div class="card controls">
+    <select id="camSelect" title="Choose the phone camera"></select>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn" class="stop" style="display:none">Stop</button>
+    <label class="voice-toggle"><input type="checkbox" id="voiceOn" checked> Voice</label>
+  </div>
+  <section class="card camera-view">
+    <h2>Camera preview</h2>
+    <div class="stage">
+      <video id="video" autoplay playsinline muted></video>
+      <canvas id="overlay"></canvas>
+    </div>
+    <div id="msg">Open the phone camera app on both your phone and PC and confirm it shows live video. Press Start and allow camera access; the phone camera should be selected automatically.</div>
+  </section>
+  <div class="results-grid">
+    <div class="card">
+      <h2>Currently detected</h2>
+      <ul id="list"><li><span>Nothing yet</span></li></ul>
+      <div class="row">Min confidence % <input type="number" id="minConf" value="55" min="10" max="95">
+        Cooldown (s) <input type="number" id="cooldown" value="6" min="1" max="60"></div>
+    </div>
+    <div class="card">
+      <h2>Announcement log</h2>
+      <div id="log"></div>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
